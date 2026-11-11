@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "Running pre-push validation..."
+mvn -B clean verify
+status=$?
+
+if [ "$status" -ne 0 ]; then
+    echo "Push blocked: Maven validation failed."
+    exit "$status"
+fi
+
+exit 0
